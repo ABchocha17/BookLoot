@@ -6,24 +6,48 @@ export default function BookDetail() {
     const params = useParams();
     const firebase = useFirebase();
     const [book, setBook] = useState(null);
+    const [url, setUrl] = useState(null);
 
     useEffect(() => {
         const fetchBook = async () => {
             try {
-                const bookData = await firebase.getBookById(params.id); // Access params.id instead of params.bookid
-                setBook(bookData.data()); // Assuming the book data is stored under the `data` property of the result
+                const bookData = await firebase.getBookById(params.bookId); 
+                setBook(bookData.data()); 
             } catch (error) {
                 console.error("Error getting document: ", error);
             }
         };
-
         fetchBook();
-    }, [params.id]); // Include params.id in the dependency array to refetch the book when the ID changes
+    }, [params.bookId]); 
 
-    console.log(params.id);
-    console.log(book);
-
+    useEffect(() => {
+        if(book){
+            const imgUrl = book.bookImgUrl;
+            firebase.getImageUrl(imgUrl).then(url => setUrl(url));
+        }
+    },[book]); 
     return (
-        <div>BookDetail</div>
+        <div className='container py-5'>
+            {book === null && <h1>Lading.....</h1> }
+            {book && <>
+                <div className="book_detail clearfix">
+                    <div className="book_detail_img col2 fl left_img">
+                        <img src={url} alt="" style={{borderRadius:"10px"}} />
+                    </div>
+                    <div className="book_detail_text">
+                        {/* <h1>details</h1> */}
+                        <h3>book name : {book.bookname}</h3>
+                        <p>book price : ₹{book.price}</p>
+                        <p>book ISBN number : {book.ISBN}</p>
+                        <h3>Owner details</h3>
+                        <p>name : {book.userName}</p>
+                        <p style={{textTransform:"none"}}>email : {book.userEmail}</p>
+                        <div className="a_btn">
+                            <a href="#.">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </>}
+        </div>
     );
 }

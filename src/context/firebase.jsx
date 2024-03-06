@@ -64,10 +64,11 @@ export const FirebaseProvider = (props) => {
     }
 
     const getBookById = async(id) =>{
-      const docRef = doc(Firestore,"book",id);
-      const result = await getDoc(docRef);
-      return result;
-    }
+        const docRef = doc(Firestore, "books", id);
+        const result = await getDoc(docRef);
+        return result;
+      }
+      
 
     return (
         <firebaseContext.Provider value={{ signUpUserWithEmailAndPassword, signInUserWithEmailAndPassword, signInWithGoogle, isLoggedIn, addNewBook, getAllBooks,getImageUrl,getBookById }}>
