@@ -8,6 +8,7 @@ import List from './pages/List';
 import Login from './pages/Login';
 import Navebar from './components/Navebar';
 import Home from './pages/Home';
+import BookDetail from './pages/BookDetail';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
       <Navebar/>
       <Routes>
         <Route index element={<Home />} />
-        <Route path='register' element={<Register />} />
-        <Route path='login' element={<Login />} />
-        <Route path='list' element={<List />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/list' element={<List />} />
+        <Route path="/books/:bookId" element={<BookDetail />} />
       </Routes>
     </div>
   );
