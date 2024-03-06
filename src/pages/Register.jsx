@@ -17,6 +17,7 @@ export default function Register() {
             console.log("signUp", result);
             setFormData({ email: "", password: "" });
             setError(null);
+            Navigate("/login")
         } catch (error) {
             setError(error.message);
         }
@@ -24,36 +25,21 @@ export default function Register() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+        setFormData(prevState => ({ ...prevState, [name]: value }));
     };
     useEffect(() => {
-        if(firebase.isLoggedIn){
-            Navigate("/")
-        }
+        if(firebase.isLoggedIn) Navigate("/")
     }, [firebase,Navigate]);
     return (
         <div className='container py-5'>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className='mb-4' >
                     <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
+                    <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} />
                 </Form.Group>
                 <Form.Group className='mb-4' >
                     <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
+                    <Form.Control type="password" name="password" value={formData.password} onChange={handleChange} />
                 </Form.Group>
                 <Button type="submit">Create Account</Button>
                 {error && <p className='error text-danger'>{error}</p>}

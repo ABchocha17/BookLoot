@@ -1,19 +1,25 @@
+import {Routes,Route} from 'react-router-dom';
 // css
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Routes,Route} from 'react-router-dom';
-
 // pages
 import Register from './pages/Register';
+import List from './pages/List';
 import Login from './pages/Login';
+import Navebar from './components/Navebar';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <Routes>
-      <Route index element={<h1>home</h1>} />
-      <Route path='register' element={<Register />} />
-      <Route path='login' element={<Login />} />
-    </Routes>
+    <div className="">
+      <Navebar/>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path='register' element={<Register />} />
+        <Route path='login' element={<Login />} />
+        <Route path='list' element={<List />} />
+      </Routes>
+    </div>
   );
 }
 
