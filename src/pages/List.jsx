@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useFirebase } from '../context/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export default function List() {
     const firebase = useFirebase(); 
     const [bookData, setBookData] = useState({ bookname:'', isbn:'', price:'', bookimg: null }); 
     const [error, setError] = useState(null);
+    const Navigate = useNavigate();
+
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -31,6 +34,13 @@ export default function List() {
             setError(error.message);
         }
     };
+
+    useEffect(() => {
+        console.log("isLoggedIn:", firebase.isLoggedIn);
+        if (!firebase.isLoggedIn) {
+            Navigate("/login");
+        }
+    }, [firebase.isLoggedIn, Navigate]);
     
     return (
         <div className='container py-5'>

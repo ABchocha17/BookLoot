@@ -19,8 +19,8 @@ export default function Home() {
         } catch (error) {
             console.error("Error getting documents: ", error);
         }
-    }, []);
-
+    }, [firebase]);
+console.log(firebase.user)
 
     return (
         <div className='container py-5'>
@@ -28,7 +28,7 @@ export default function Home() {
                 {books && 
                     books.map((book) => ( 
                         <Col lg={3}  key={book.id}>
-                            <BookCard {...book} />
+                            <BookCard {...book} link={`books/${book.id}`} />
                         </Col>
                     ))
                 }

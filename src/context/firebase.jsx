@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { getStorage, uploadBytes, ref,getDownloadURL } from 'firebase/storage';
-import { getFirestore, collection, addDoc, getDocs,doc,getDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs,doc,getDoc,query,where } from 'firebase/firestore';
 
 const firebaseContext = createContext(null);
 
@@ -48,14 +48,14 @@ export const FirebaseProvider = (props) => {
             ISBN,
             price,
             bookImgUrl: bookUploadImg.ref.fullPath,
-            userName: user.displayName,
+            userName: user?.displayName,
             userEmail: user.email,
             userId: user.uid
         });
     };
 
     const getAllBooks = async () => {
-        const querySnapshot = await getDocs(collection(Firestore, "books"));
+        const querySnapshot = await getDocs(collection( Firestore , "books"));
         return querySnapshot;
     };
 
@@ -69,10 +69,35 @@ export const FirebaseProvider = (props) => {
         return result;
       }
       
+    const placeOrder = async (bookId, qty) => {
+        const collectionRef = collection(Firestore, 'books', bookId, 'orders');
+        const result = await addDoc(collectionRef, {
+            userName: user?.displayName,
+            userEmail: user?.email,
+            userId: user?.uid,
+            qty: Number(qty)
+        });
+        return result;
+    };
 
+    const fetchBooks = async (userId) => {
+        const collectionRef = collection(Firestore, 'books');
+        const q = query(collectionRef, where("userId", "==", userId));
+        const books = await getDocs(q);
+        return books;
+    };
+    
+    const getOrders = async (bookId) => {
+        const collectionRef = collection(Firestore, "books" ,bookId,"orders");
+        const result = await getDocs(collectionRef);
+        return result;
+    };  
+    
     return (
-        <firebaseContext.Provider value={{ signUpUserWithEmailAndPassword, signInUserWithEmailAndPassword, signInWithGoogle, isLoggedIn, addNewBook, getAllBooks,getImageUrl,getBookById }}>
+        <firebaseContext.Provider value={{ fetchBooks,signUpUserWithEmailAndPassword, signInUserWithEmailAndPassword, signInWithGoogle, isLoggedIn, addNewBook, getAllBooks,getImageUrl,getBookById,placeOrder,user,getOrders }}>
             {props.children}
         </firebaseContext.Provider>
     );
 };
+
+

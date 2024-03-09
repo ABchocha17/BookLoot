@@ -19,7 +19,7 @@ input[type="submit"]{height: auto !important;padding: 10px 23px;}
     --fonts2: 'Josefin Sans';
 }
 
-.a_btn a{background:var(--theme-1);color: var(--white);font-size: 16px;padding: 15px 27px;border:solid 2px var(--theme-1);text-transform: capitalize;border-radius: 3px;transition: all 0.3s ease-in-out;font-weight: 600;display: inline-block;z-index: 2;position: relative;}
+.a_btn a{background:var(--theme-1);color: var(--white);font-size: 16px;padding: 10px 27px;border:solid 2px var(--theme-1);text-transform: capitalize;border-radius: 3px;transition: all 0.3s ease-in-out;font-weight: 600;display: inline-block;z-index: 2;position: relative;}
 .a_btn a:hover{color: var(--theme-1);}
 .a_btn a::before{background: var(--theme-1);width: 0%;height: 100%;left: 0;top: 0;z-index: -1;transition: .3s;position: absolute;content: '';}
 .a_btn a:hover:before{background: var(--white);animation: btn .7s .1s backwards;width: 100%;}
@@ -88,3 +88,6 @@ h5{font-size: 26px;line-height: 120%;font-family: var(--fonts2);}
 h6,.problam_card_text p strong,.footer_top p strong{font-size: 24px;line-height: 100%;font-family: var(--fonts2);}
 .problam_card_text p strong{color: var(--black);}
 .footer_top p strong{color: var(--white);}
+
+
+.params.bookId input{width: max-content !important;}

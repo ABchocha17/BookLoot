@@ -9,6 +9,8 @@ import Login from './pages/Login';
 import Navebar from './components/Navebar';
 import Home from './pages/Home';
 import BookDetail from './pages/BookDetail';
+import Orders from './pages/Orders';
+import OrderDetail from './pages/OrderDetail';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/list' element={<List />} />
         <Route path="/books/:bookId" element={<BookDetail />} />
+        <Route path="/books/Orders" element={<Orders />} />
+        <Route path="/books/Orders/:bookId" element={<OrderDetail />} />
       </Routes>
     </div>
   );
