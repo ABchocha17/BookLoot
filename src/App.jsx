@@ -19,12 +19,12 @@ function App() {
       <Navebar/>
       <Routes>
         <Route path="/bookloot" element={<Home />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/list' element={<List />} />
-        <Route path="/books/:bookId" element={<BookDetail />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/orders/:orderId" element={<OrderDetail />} />
+        <Route path='/bookloot/register' element={<Register />} />
+        <Route path='/bookloot/login' element={<Login />} />
+        <Route path='/bookloot/list' element={<List />} />
+        <Route path="/bookloot/books/:bookId" element={<BookDetail />} />
+        <Route path="/bookloot/orders" element={<Orders />} />
+        <Route path="/bookloot/orders/:orderId" element={<OrderDetail />} />
       </Routes>
     </div>
   );
