@@ -17,17 +17,15 @@ function App() {
   return (
     <div className="">
       <Navebar/>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/list' element={<List />} />
-          <Route path="/books/:bookId" element={<BookDetail />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/orders/:orderId" element={<OrderDetail />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/list' element={<List />} />
+        <Route path="/books/:bookId" element={<BookDetail />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders/:orderId" element={<OrderDetail />} />
+      </Routes>
     </div>
   );
 }
