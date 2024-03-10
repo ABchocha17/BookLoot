@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFirebase } from '../context/firebase';
 import BookCard from '../components/BookCard';
 import { Col, Row } from 'react-bootstrap';
+import Banner from '../components/Banner';
 
 export default function Home() {
     const firebase = useFirebase();
@@ -20,10 +21,13 @@ export default function Home() {
             console.error("Error getting documents: ", error);
         }
     }, [firebase]);
-console.log(firebase.user)
+
+   
+console.log(firebase.user);
 
     return (
         <div className='container py-5'>
+            <Banner />
             <Row className="book_otr" >
                 {books && 
                     books.map((book) => ( 
