@@ -1,4 +1,4 @@
-import { HashRouter as  Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // css
 import './App.css';
@@ -18,7 +18,7 @@ function App() {
     <div className="">
       <Navebar/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/bookloot" element={<Home />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/list' element={<List />} />
