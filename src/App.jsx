@@ -1,4 +1,5 @@
-import {Routes,Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 // css
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,15 +17,17 @@ function App() {
   return (
     <div className="">
       <Navebar/>
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/list' element={<List />} />
-        <Route path="/books/:bookId" element={<BookDetail />} />
-        <Route path="/books/Orders" element={<Orders />} />
-        <Route path="/books/Orders/:bookId" element={<OrderDetail />} />
-      </Routes>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/list' element={<List />} />
+          <Route path="/books/:bookId" element={<BookDetail />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:orderId" element={<OrderDetail />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
